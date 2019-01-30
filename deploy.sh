@@ -15,3 +15,5 @@ if [ ! -d "$dir_inputs" ]; then
 else
         cp $dir_assets/inputs.conf $dir_inputs/inputs.conf
 fi
+
+/opt/splunkforwarder/bin/splunk restart
