@@ -39,6 +39,7 @@ else
                 cp $dir_assets/inputs.conf $dir_inputs/inputs.conf
                 initialize
         elif [ $x == "a" ] ; then
+                echo "" >> $dir_inputs/inputs.conf
                 cat $dir_assets/inputs.conf >> $dir_inputs/inputs.conf
                 initialize
         fi                                                    
