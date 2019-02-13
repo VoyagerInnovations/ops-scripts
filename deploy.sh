@@ -32,6 +32,7 @@ if [ ! -d "$dir_inputs" ]; then
         cp $dir_assets/inputs.conf $dir_inputs/inputs.conf
         initialize
 else
+        cat $dir_inputs/inputs.conf
         echo -n "Found an existing inputs.conf file. Do you wish to proceed? o - overwrite a - append config  ctrl + c - exit : "
         read x
 
