@@ -33,7 +33,7 @@ if [ ! -d "$dir_inputs" ]; then
         initialize
 else
         cat $dir_inputs/inputs.conf
-        echo -n "Found an existing inputs.conf file. Do you wish to proceed? o - overwrite a - append config  ctrl + c - exit : "
+        echo -n "Found an existing inputs.conf file. Do you wish to proceed? a - append config o - overwrite p - proceed  ctrl + c - exit : "
         read x
 
         if [ $x == "o" ] ; then
@@ -46,3 +46,24 @@ else
                 initialize
         fi                                                    
 fi
+
+if [ ! -d "$dir_inputs" ]; then
+        mkdir $dir_inputs
+        cp $dir_assets/outputs.conf $dir_inputs/outputs.conf
+        initialize
+else
+        cat $dir_inputs/outputs.conf
+        echo -n "Found an existing outputs.conf file. Do you wish to proceed? a - append config o - overwrite p - proceed  ctrl + c - exit : "
+        read x
+
+        if [ $x == "o" ] ; then
+                cp $dir_assets/outputs.conf $dir_inputs/outputs.conf
+                initialize
+        elif [ $x == "a" ] ; then
+                echo " 
+                " >> $dir_inputs/inputs.conf
+                cat $dir_assets/outputs.conf >> $dir_inputs/outputs.conf
+                initialize
+        fi                                                    
+fi
+
