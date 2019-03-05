@@ -11,6 +11,9 @@ echo "Newly added scripts:" | ls -lrt $dir_assets/scripts/*sh
 echo "Inputs config:" | cat $dir_inputs/inputs.conf
 echo ""
 echo ""
+echo "Outputs config:" | cat $dir_inputs/inputs.conf
+echo ""
+echo ""
 echo "Initiating splunk daemon restart ( Press ctrl + c to cancel)"
 sleep 1
 echo "3.."
@@ -33,7 +36,7 @@ if [ ! -d "$dir_inputs" ]; then
         initialize
 else
         cat $dir_inputs/inputs.conf
-        echo -n "Found an existing inputs.conf file. Do you wish to proceed? a - append config o - overwrite p - proceed  ctrl + c - exit : "
+        echo -n "Found an existing inputs.conf file. Do you wish to proceed? a - append  o - overwrite p - proceed  ctrl + c - exit : "
         read x
 
         if [ $x == "o" ] ; then
@@ -52,8 +55,9 @@ if [ ! -d "$dir_inputs" ]; then
         cp $dir_assets/outputs.conf $dir_inputs/outputs.conf
         initialize
 else
+        clear
         cat $dir_inputs/outputs.conf
-        echo -n "Found an existing outputs.conf file. Do you wish to proceed? a - append config o - overwrite  ctrl + c - exit : "
+        echo -n "Found an existing outputs.conf file. Do you wish to proceed? a - append  o - overwrite  ctrl + c - exit : "
         read x
 
         if [ $x == "o" ] ; then
