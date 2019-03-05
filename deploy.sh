@@ -18,6 +18,25 @@ echo "1"
 /opt/splunkforwarder/bin/splunk restart
 }
 
+check_outputs () {
+if [ ! -d "$dir_inputs/outputs.conf" ]; then
+        cp $dir_assets/outputs.conf $dir_inputs/outputs.conf
+else
+        clear
+        cat $dir_inputs/outputs.conf
+        echo -n "Found an existing outputs.conf file. Do you wish to proceed? a - append  o - overwrite  ctrl + c - exit : "
+        read x
+
+        if [ $x == "o" ] ; then
+                cp $dir_assets/outputs.conf $dir_inputs/outputs.conf
+                echo "Outputs config:" | cat $dir_inputs/inputs.conf
+        elif [ $x == "a" ] ; then
+                cat $dir_assets/outputs.conf >> $dir_inputs/outputs.conf
+                echo "Outputs config:" | cat $dir_inputs/inputs.conf
+        fi                                                    
+fi
+}
+
 
 chmod +x $dir_assets/scripts/*sh
 
@@ -35,31 +54,15 @@ else
         if [ $x == "o" ] ; then
                 cp $dir_assets/inputs.conf $dir_inputs/inputs.conf
                 echo "Inputs config:" | cat $dir_inputs/inputs.conf
+                check_outputs
                 initialize
         elif [ $x == "a" ] ; then
                 cat $dir_assets/inputs.conf >> $dir_inputs/inputs.conf
                 echo "Inputs config:" | cat $dir_inputs/inputs.conf
+                check_outputs
                 initialize
         fi                                                    
 fi
 
-if [ ! -d "$dir_inputs/outputs.conf" ]; then
-        cp $dir_assets/outputs.conf $dir_inputs/outputs.conf
-        initialize
-else
-        clear
-        cat $dir_inputs/outputs.conf
-        echo -n "Found an existing outputs.conf file. Do you wish to proceed? a - append  o - overwrite  ctrl + c - exit : "
-        read x
 
-        if [ $x == "o" ] ; then
-                cp $dir_assets/outputs.conf $dir_inputs/outputs.conf
-                echo "Outputs config:" | cat $dir_inputs/inputs.conf
-                initialize
-        elif [ $x == "a" ] ; then
-                cat $dir_assets/outputs.conf >> $dir_inputs/outputs.conf
-                echo "Outputs config:" | cat $dir_inputs/inputs.conf
-                initialize
-        fi                                                    
-fi
 
