@@ -7,13 +7,6 @@ dir_scripts='/opt/splunkforwarder/bin/scripts'
 
 
 initialize (){
-echo "Newly added scripts:" | ls -lrt $dir_assets/scripts/*sh
-echo "Inputs config:" | cat $dir_inputs/inputs.conf
-echo ""
-echo ""
-echo "Outputs config:" | cat $dir_inputs/inputs.conf
-echo ""
-echo ""
 echo "Initiating splunk daemon restart ( Press ctrl + c to cancel)"
 sleep 1
 echo "3.."
@@ -41,11 +34,11 @@ else
 
         if [ $x == "o" ] ; then
                 cp $dir_assets/inputs.conf $dir_inputs/inputs.conf
+                echo "Inputs config:" | cat $dir_inputs/inputs.conf
                 initialize
         elif [ $x == "a" ] ; then
-                echo " 
-                " >> $dir_inputs/inputs.conf
                 cat $dir_assets/inputs.conf >> $dir_inputs/inputs.conf
+                echo "Inputs config:" | cat $dir_inputs/inputs.conf
                 initialize
         fi                                                    
 fi
@@ -62,11 +55,11 @@ else
 
         if [ $x == "o" ] ; then
                 cp $dir_assets/outputs.conf $dir_inputs/outputs.conf
+                echo "Outputs config:" | cat $dir_inputs/inputs.conf
                 initialize
         elif [ $x == "a" ] ; then
-                echo " 
-                " >> $dir_inputs/inputs.conf
                 cat $dir_assets/outputs.conf >> $dir_inputs/outputs.conf
+                echo "Outputs config:" | cat $dir_inputs/inputs.conf
                 initialize
         fi                                                    
 fi
