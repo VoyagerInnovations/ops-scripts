@@ -43,8 +43,7 @@ else
         fi                                                    
 fi
 
-if [ ! -d "$dir_inputs" ]; then
-        mkdir $dir_inputs
+if [ ! -d "$dir_inputs/outputs.conf" ]; then
         cp $dir_assets/outputs.conf $dir_inputs/outputs.conf
         initialize
 else
