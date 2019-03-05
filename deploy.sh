@@ -53,7 +53,7 @@ if [ ! -d "$dir_inputs" ]; then
         initialize
 else
         cat $dir_inputs/outputs.conf
-        echo -n "Found an existing outputs.conf file. Do you wish to proceed? a - append config o - overwrite p - proceed  ctrl + c - exit : "
+        echo -n "Found an existing outputs.conf file. Do you wish to proceed? a - append config o - overwrite  ctrl + c - exit : "
         read x
 
         if [ $x == "o" ] ; then
